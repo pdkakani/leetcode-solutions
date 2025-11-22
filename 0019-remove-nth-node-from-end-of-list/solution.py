@@ -9,9 +9,9 @@ class Solution:
         dummy.next = head
         ahead = behind = dummy
 
-        for _ in range(n+1):
+        for i in range(n+1):
             ahead = ahead.next
-
+        
         while ahead:
             behind = behind.next
             ahead = ahead.next
