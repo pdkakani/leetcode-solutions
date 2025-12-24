@@ -7,15 +7,18 @@
 class Solution:
     def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
         
-        def helper(root, curr, target) -> bool:
+        def helper(root, curr_sum, tsum):
             if not root:
                 return False
-    
-            curr += root.val
+
+            curr_sum += root.val
+
             if not root.left and not root.right:
-                return curr == target
-            
-            return (helper(root.left, curr, target) or helper(root.right, curr, target))
-        
-        return helper(root, 0, targetSum)
-        
+                return curr_sum == tsum
+
+            left = helper(root.left, curr_sum, tsum)
+            right = helper(root.right, curr_sum, tsum)
+
+            return left or right
+
+        return helper(root, 0, targetSum)        
