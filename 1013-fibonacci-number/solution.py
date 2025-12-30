@@ -1,15 +1,14 @@
 class Solution:
-    def fib(self, n: int) -> int:
+    def fib(self, n: int, memo=None) -> int:
+        if memo is None:
+            memo = {}
+        if n in memo:
+            return memo[n]  
         if n == 0:
             return 0
         if n == 1:
             return 1
-        prev = 0
-        curr = 1
-
-        for i in range(2, n+1):
-            prev, curr = curr, prev+curr
-
-        return curr
-
+        
+        memo[n] = self.fib(n - 1, memo) + self.fib(n - 2, memo)
+        return memo[n]
         
