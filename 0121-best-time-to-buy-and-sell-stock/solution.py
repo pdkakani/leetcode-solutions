@@ -6,12 +6,7 @@ class Solution:
         for price in prices:
             if price < buy:
                 buy = price
-            elif price-buy > profit:
+            elif price - buy > profit:
                 profit = price - buy
-
-
         return profit
-
-
-
         
