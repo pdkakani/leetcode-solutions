@@ -1,12 +1,6 @@
-class Solution(object):
-    def strStr(self, haystack, needle):
-        """
-        :type haystack: str
-        :type needle: str
-        :rtype: int
-        """
-        for i in range(len(haystack) - len(needle) + 1):
-            if haystack[i:i+len(needle)] == needle:
-                return i
-        return -1
-            
+class Solution:
+    def strStr(self, haystack: str, needle: str) -> int:
+        res = haystack.find(needle, 0, len(haystack))
+ 
+        return res if res >= 0 else -1
+        
