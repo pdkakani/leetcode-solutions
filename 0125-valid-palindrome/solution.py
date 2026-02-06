@@ -1,18 +1,11 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        # first step is to clean the string
-        cleaned = ""
-        for i in s.lower():
-            if i.isalnum():
-                cleaned += i
+        clean_s = ""
 
-        left = 0
-        right = len(cleaned) - 1
+        for c in s:
+            if c.isalnum():
+                clean_s += c
 
-        while left <= right:
-            if cleaned[left] != cleaned[right]:
-                return False
-            left += 1
-            right -= 1
-        return True
-        
+        lower_cs = clean_s.lower()
+        return lower_cs[::-1] == lower_cs
+
