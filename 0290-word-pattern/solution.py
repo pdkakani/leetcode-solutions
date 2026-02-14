@@ -1,8 +1,28 @@
 class Solution:
     def wordPattern(self, pattern: str, s: str) -> bool:
-        input_str = s.split(" ")
-        input_pattern = list(pattern)
-        if len(input_str) != len(input_pattern):
-            return False
-        return len(set(input_pattern)) == len(set(input_str)) == len(set(zip(input_pattern, input_str)))
+        # words = s.split()
+        # if len(pattern) != len(words):
+        #     return False
+
+        # pat = Counter(pattern)
+        # words_counter = Counter(words)
         
+        # if Counter(pat.values()) != Counter(words_counter.values()):
+        #     return False
+        
+        # word_pat_map = dict(zip(pat, words_counter))
+
+        # for i in range(len(pattern)):
+        #     letter = pattern[i]
+        #     word = word_pat_map[letter]
+        #     if word != words[i]:
+        #         return False
+        # return True
+
+        letters = list(pattern)
+        words = s.split()
+
+        if len(letters) != len(words):
+            return False
+        
+        return len(set(letters)) == len(set(words)) == len(set(zip(letters,words)))
