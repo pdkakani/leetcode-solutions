@@ -10,23 +10,48 @@ class Solution:
         # the remaning left digit should be added to the next sum
         # at last the remaining left digit should also be added to the result
 
-        dummy = ListNode(0)
-        current = dummy
+        dummy = curr = ListNode()
         carry = 0
-
         while l1 or l2 or carry:
             val1 = l1.val if l1 else 0
             val2 = l2.val if l2 else 0
 
             total = val1 + val2 + carry
             carry = total // 10
+            digit = total % 10
 
-            # setting next node with value of digit on unit's place i.e. right side
-            current.next = ListNode(total % 10)
-            current = current.next
+            curr.next = ListNode(digit)
+            curr = curr.next
 
             if l1:
                 l1 = l1.next
             if l2:
                 l2 = l2.next
-        return dummy.next 
+        return dummy.next
+
+
+
+        # l1s = ""
+        # l2s = ""
+        # curr_l1 = l1
+        # while curr_l1:
+        #     l1s += str(curr_l1.val)
+        #     curr_l1 = curr_l1.next
+        
+        # curr_l2 = l2
+        # while curr_l2:
+        #     l2s += str(curr_l2.val)
+        #     curr_l2 = curr_l2.next
+        
+        # rev_l1 = l1s[::-1]
+        # rev_l2 = l2s[::-1]
+        # res = int(rev_l1) + int(rev_l2)
+
+        # res_l = str(res)[::-1]
+        # cur = dummy = ListNode()
+        
+
+        # for i in res_l:
+        #     cur.next = ListNode(val=int(i))
+        #     cur = cur.next
+        # return dummy.next        
