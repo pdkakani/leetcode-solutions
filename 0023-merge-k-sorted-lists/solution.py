@@ -7,33 +7,51 @@ class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
         if not lists:
             return None
-        result = lists[0]
+        # result = lists[0]
         # logic should grab first list and merge with 2 list 
         # point current to result merge list
         # use the merged list to merge with 3rd list and so on 
-        def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+        # def mergeTwoLists(l1, l2):
+        #     dummy = ListNode()
+
+        #     curr = dummy
+
+        #     while l1 and l2:
+        #         if l1.val <= l2.val:
+        #             curr.next = l1
+        #             l1 = l1.next
+        #         else:
+        #             curr.next = l2
+        #             l2 = l2.next
+        #         curr = curr.next
+
+        #     curr.next = l1 or l2
+        #     return dummy.next 
+        
+        # for i in range(1, len(lists)):
+        #     result = mergeTwoLists(result, lists[i])
+        
+        # return result
+        arr = []
+
+        for i in range(len(lists)):
+            head = lists[i]
+            while head:
+                arr.append(head.val)
+                head = head.next
             
-            dummy = ListNode()
-            current = dummy
+        heapq.heapify(arr)
+        dummy = ListNode()
+        curr = dummy
 
-            a = list1
-            b = list2
+        for i in range(len(arr)):
+            num = heapq.heappop(arr)
+            curr.next = ListNode(num)
+            curr = curr.next
+        return dummy.next
 
-            while a and b:
-                if a.val < b.val:
-                    current.next = a
-                    current = a
-                    a = a.next
-                else:
-                    current.next = b
-                    current = b
-                    b = b.next
-            current.next = a if a else b
-            return dummy.next
 
-        
-        for i in range(1, len(lists)):
-            result = mergeTwoLists(self, result, lists[i])
-        
-        return result
+
+
+
 
