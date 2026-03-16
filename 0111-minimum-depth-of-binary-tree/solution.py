@@ -9,18 +9,14 @@ class Solution:
         if not root:
             return 0
         
-        queue = deque([(root, 1)])
+        if not root.left:
+            return self.minDepth(root.right) + 1
+        if not root.right:    
+            return self.minDepth(root.left) + 1
 
-        while queue:
-            node, depth = queue.popleft()
+        return min(self.minDepth(root.right), self.minDepth(root.left)) + 1
+        
 
-            if not node.left and not node.right:
-                return depth
-
-            if node.left:
-                queue.append((node.left, depth+1))
-            if node.right:
-                queue.append((node.right, depth+1))
 
 
         
