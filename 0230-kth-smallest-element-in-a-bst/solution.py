@@ -15,6 +15,7 @@ class Solution:
             left = inorder(node.left)
             if left is not None:
                 return left
+                
             counter += 1
 
             if counter == k:
