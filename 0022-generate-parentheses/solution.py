@@ -1,17 +1,17 @@
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
         res = []
-        def helper(l, r, s):
-            if len(s) == n * 2:
+        def bt(s, open_count, close_count):
+            if len(s) == 2*n:
                 res.append(s)
                 return
-            
-            if l < n:
-                helper(l + 1, r, s + '(')
-            
-            if r < l:
-                helper(l, r + 1, s + ')')
-            
-        helper(0,0,'')
+            if open_count < n:
+                bt(s + "(", open_count+ 1, close_count)
+            if close_count < open_count:
+                bt(s+")", open_count, close_count+1)
+        bt("", 0, 0)
         return res
+
+
+        
         
