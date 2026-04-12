@@ -10,14 +10,10 @@ class Solution:
         count = 0
         
         for i in range(1,3):
-            remainder = n - i
-            res = self.climbStairs(remainder)
-            
+            res = self.climbStairs(n - i)
             count += res
         
         self.memo[n] = count
         return count
         
 
-
-        
