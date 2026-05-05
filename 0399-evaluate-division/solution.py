@@ -1,6 +1,6 @@
 class Solution:
     def calcEquation(self, equations: List[List[str]], values: List[float], queries: List[List[str]]) -> List[float]:
-        # first lets make an adj list out of the equations and values array
+         # first lets make an adj list out of the equations and values array
         # example: [a : [(b, 2.0)]]
         adj = defaultdict(list)
         for i in range(len(equations)):
@@ -44,5 +44,4 @@ class Solution:
                 result.append(temp)
 
         return result
-                
-
+            
