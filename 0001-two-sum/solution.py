@@ -4,9 +4,12 @@ class Solution:
 
         for i, v in enumerate(nums):
             h[v] = i
-
+        
         for i in range(len(nums)):
             temp = target - nums[i]
 
             if temp in h and h[temp] != i:
                 return [i, h[temp]]
+
+
+            
