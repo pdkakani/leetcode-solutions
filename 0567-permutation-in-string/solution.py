@@ -1,20 +1,27 @@
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
-        k = len(s1)
-        count_s1 = [0] * 26
-        count_s2 = [0] * 26
-        l = 0
-        for i in s1:
-            count_s1[ord(i) - 97] += 1
+        s1Count = {}
+
+        for c in s1:
+            s1Count[c] = s1Count.get(c, 0) + 1
         
-        for r in range(len(s2)):
-            count_s2[ord(s2[r]) - 97] += 1
+        window_count = {}
+        left = 0
 
-            while r - l + 1 > k:
-                count_s2[ord(s2[l]) - 97] -= 1
-                l += 1
-            
-            if count_s2 == count_s1:
-                return True
-        return False
+        for right in range(len(s2)):
+            c = s2[right]
+            window_count[c] = window_count.get(c, 0) + 1
 
+            if right - left + 1 > len(s1):
+                window_count[s2[left]] -= 1
+                if window_count[s2[left]] == 0:
+                    del window_count[s2[left]]
+                left += 1
+
+
+            if right - left + 1 == len(s1):
+                if window_count == s1Count:
+                    return True
+
+        return False 
+        
