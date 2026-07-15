@@ -5,23 +5,24 @@ class Solution:
 
         while left <= right:
             mid = (left + right) // 2
-
             if nums[mid] == target:
                 return True
+            
+            # is left half sorted ?
+            if nums[mid] > nums[right]:
+                # is target in left sorted half
+                if nums[left] <= target < nums[mid]:
+                    right = mid - 1
+                else:
+                    left = mid + 1
 
-            if nums[left] == nums[mid] == nums[right]:
-                left += 1
-                right -=1
-            elif nums[left] <= nums[mid]:
-                if nums[left] <= target and target < nums[mid]:
-                    right = mid - 1
-                else:
+            elif nums[mid] < nums[right]:
+                # is target in right sorted half
+                if nums[right] >= target > nums[mid]:
                     left = mid + 1
+                else:
+                    right = mid - 1
             else:
-                if nums[mid] < target and target <= nums[right]:
-                    left = mid + 1
-                else:
-                    right = mid - 1
-        
+                right -= 1
+
         return False
-        
