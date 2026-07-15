@@ -5,29 +5,22 @@ class Solution:
 
         while left <= right:
             mid = (left + right) // 2
-
             if nums[mid] == target:
                 return mid
 
-            if nums[left] == nums[mid] == nums[right]:
-                left += 1
-                right -=1
-            # if true then left is sorted
-            elif nums[left] <= nums[mid]:
-                # check if the target is within the left part
-                if nums[left] <= target and target < nums[mid]:
+            # is the left half sorted
+            if nums[left] <= nums[mid]:
+                # is the target in sorted left half
+                if nums[left] <= target < nums[mid]:
                     right = mid - 1
                 else:
                     left = mid + 1
             else:
-                # right part is sorted
-                # check if the target is within the right part
-                if nums[mid] < target and target <= nums[right]:
+                # is target in sorted right half
+                if nums[right] >= target > nums[mid]:
                     left = mid + 1
                 else:
                     right = mid - 1
-            
         return -1
-                 
 
-
+        
