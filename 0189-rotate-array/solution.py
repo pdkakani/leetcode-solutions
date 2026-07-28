@@ -3,28 +3,26 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        # n = len(nums)
-        # k = k % n 
+        # pointer method
+        # imagine its numbers sitting on chair in a circle
 
-        # def my_reverse(start, end):
-        #     while start < end:
-        #         nums[start], nums[end] = nums[end], nums[start]
-        #         start += 1
-        #         end -= 1
+        start = 0
+        count = 0
 
-        # my_reverse(0, n-1)
-        # my_reverse(0, k-1)
-        # my_reverse(k, n-1)
-
-        def reverse(start, end):
-            while start < end:
-                nums[start], nums[end] = nums[end], nums[start]
-                start += 1
-                end -= 1
-        
         n = len(nums)
-        k = k % n
-        reverse(0, n - 1)
-        
-        reverse(0, k-1)
-        reverse(k, n-1)
+
+        while count < n:
+            curr_idx = start
+            prev_value = nums[start]
+
+            while True:
+                next_idx = (curr_idx + k) % n
+                nums[next_idx], prev_value = prev_value, nums[next_idx]
+
+                curr_idx = next_idx
+                count += 1
+
+                if start == curr_idx:
+                    break
+
+            start += 1
