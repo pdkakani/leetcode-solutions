@@ -2,7 +2,7 @@ class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
         posToUpdate = 0
         currentElem = None
-        occurrences = 1
+        occurrences = 0
         threshold = 2
         for num in nums:
             if (num != currentElem):
