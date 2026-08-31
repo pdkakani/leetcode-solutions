@@ -1,40 +1,24 @@
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
-        #search over indices
-
-        def first_occ(nums, target):
+        
+        def bs(nums, target, findFirst):
             left = 0
-            right = len(nums)
+            right = len(nums) - 1
+            ans = -1
 
-
-            while left < right:
-                mid = left + (right -left) // 2
-
-                if nums[mid] >= target:
-                    right = mid
-                else:
+            while left <= right:
+                mid = (left + right) // 2
+                if target > nums[mid]:
                     left = mid + 1
-            return left
-
-        def last_occ(nums, target):
-            left = 0
-            right = len(nums)
-
-            while left < right:
-                mid = left + (right - left) // 2
-
-                if nums[mid] > target:
-                    right = mid
+                elif target < nums[mid]:
+                    right = mid - 1
                 else:
-                    left= mid + 1
-            return left - 1
-
-
-        first = first_occ(nums, target)
-        if first == len(nums) or nums[first] != target:
-            return [-1,-1]
-        last = last_occ(nums, target)
-        return [first, last]
-
+                    ans = mid
+                    if findFirst:
+                        right = mid - 1
+                    else:
+                        left = mid + 1
+            return ans
+        return [bs(nums, target, True), bs(nums, target, False)]
 
         
