@@ -7,20 +7,21 @@ class Solution:
             mid = (left + right) // 2
             if nums[mid] == target:
                 return mid
-
-            # is the left half sorted
-            if nums[left] <= nums[mid]:
-                # is the target in sorted left half
+            
+            # if the left half is sorted
+            elif nums[left] <= nums[mid]:
+                # check if its in the left sorted half
                 if nums[left] <= target < nums[mid]:
                     right = mid - 1
                 else:
                     left = mid + 1
             else:
-                # is target in sorted right half
+                # check in the right sorted half
                 if nums[right] >= target > nums[mid]:
                     left = mid + 1
                 else:
                     right = mid - 1
+        
         return -1
 
         
